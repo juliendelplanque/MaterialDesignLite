@@ -29,16 +29,16 @@ MDLMenuBuilder >> visitCommand: aCmCommandEntry [
 
 { #category : #visiting }
 MDLMenuBuilder >> visitCommandGroup: aCmCommandsGroup [
-	"This builder expect a single level command-group."
 	self htmlCanvas div
-		id: (self htmlCanvas nextId);
-		class: 'menuButtonWidgetButton mdl-button mdl-js-button menuButtonWidgetButton';
+		id: self htmlCanvas nextId;
+		class:
+			'menuButtonWidgetButton mdl-button mdl-js-button menuButtonWidgetButton';
 		with: [ self htmlCanvas mdlIcon: 'arrow_drop_down' ].
 	self htmlCanvas mdlMenu
 		bottomLeft;
 		for: self htmlCanvas lastId;
 		class: 'menuButtonWidgetMenu';
 		with: [ 
-			aCmCommandsGroup commands do: [ :command |
-				command acceptVisitor: self ] ]
+			aCmCommandsGroup entries
+				do: [ :command | command acceptVisitor: self ] ]
 ]
